@@ -13,7 +13,6 @@ import static http.HttpConstants.*;
 
 public class HttpRequest {
 
-    protected static String locationUrl = "";
     URL obj;
     HttpURLConnection con;
     int responseCode;
@@ -99,11 +98,6 @@ public class HttpRequest {
         System.out.println(HEADERS_LOG_HEADER);
 
         logHeadersToConsole(con.getHeaderFields());
-
-        if (!con.getHeaderFields().get(LOCATION_HEADER).toString().isEmpty()) {
-            locationUrl = con.getHeaderFields().get(LOCATION_HEADER).toString()
-                .substring(1, con.getHeaderFields().get(LOCATION_HEADER).toString().length() - 1);
-        }
 
         //print result
         System.out.println(response.toString());
@@ -222,10 +216,6 @@ public class HttpRequest {
         }
 
         return hyperMediaLinks;
-    }
-
-    public static String getLocationUrl() {
-        return locationUrl;
     }
 
     public List<String> getLatestHyperMediaLinks() {

@@ -6,8 +6,6 @@ import http.HttpRequest;
 
 public class HttpURLConnectionExample {
 
-    private final String USER_AGENT = "Mozilla/5.0";
-    private static String getRequestUrl = "";
     private static final String initialUrl = "http://10.0.0.244:8080/order";
     private static final String orderBody = "<order xmlns=\"http://schemas.restbucks.com\">\n" +
         "  <name>Josh</name>\n" +
@@ -31,17 +29,11 @@ public class HttpURLConnectionExample {
 
     public static void main(String[] args) throws Exception {
 
-        //main.HttpURLConnectionExample http = new main.HttpURLConnectionExample();
         HttpRequest http = new HttpRequest();
-
 
         System.out.println("\n>>>Testing 1 - Send Http POST request - Creating order");
         http.sendPost(initialUrl, orderBody);
         hyperMediaLinks = http.getLatestHyperMediaLinks();
-
-        //System.out.println("\n\n\n>>>Testing 2 - Send Http GET request - Checking order");
-        //getRequestUrl = http.getLocationUrl(); //assume order is successful
-        //http.sendGet(getRequestUrl);
 
         System.out.println("\n\n\n>>>Testing 2 - Send Http PUT request - pay for order");
         //search links for payment hypermedia link
@@ -94,7 +86,7 @@ public class HttpURLConnectionExample {
         }
 
         System.out.println("\n\n\n>>>Testing 4 - Send Http DELETE request - finishing order");
-        //delete receipt once ready
+        //delete receipt once coffee ready
         http.sendDelete(receiptUrl);
 
         System.out.println("\n\n>>>FINITO!<<<");
