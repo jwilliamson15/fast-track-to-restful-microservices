@@ -64,8 +64,38 @@ public class HttpURLConnectionExample {
         }
 
         //get until status = ready
+        boolean ready = false;
+        String getUrl = "";
+        for (String hypermediaLink: hyperMediaLinks) {
+            if (getUrl != "") {
+                break;
+            }
+            if (hypermediaLink.contains("order")) {
+                //set putUrl
+                getUrl = hypermediaLink.substring(hypermediaLink.indexOf("uri=\"")+5, hypermediaLink.indexOf("\" m"));
+            }
+        }
 
-        //delete recipet once ready
+        String receiptUrl = "";
+        while (!ready) {
+            http.sendGet(getUrl);
+            hyperMediaLinks = http.getLatestHyperMediaLinks();
+            for (String hypermediaLink: hyperMediaLinks) {
+                if (receiptUrl != "") {
+                    break;
+                }
+                if (hypermediaLink.contains("receipt")) {
+                    //set putUrl
+                    receiptUrl = hypermediaLink.substring(hypermediaLink.indexOf("uri=\"")+5, hypermediaLink.indexOf("\" m"));
+                    ready = true;
+                }
+            }
+        }
+
+        //delete receipt once ready
+        http.sendDelete(receiptUrl);
+
+        System.out.println("\n\n>>>FINITO!<<<");
 
     }
 

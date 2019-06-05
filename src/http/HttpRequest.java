@@ -160,6 +160,37 @@ public class HttpRequest {
         }
     }
 
+    // HTTP DELETE request
+    public void sendDelete(final String requestUrl) throws Exception {
+
+        obj = new URL(requestUrl);
+        con = (HttpURLConnection) obj.openConnection();
+
+        con.setRequestMethod(DELETE);
+
+        responseCode = con.getResponseCode();
+        System.out.println(SENDING_REQUEST_LOG + requestUrl);
+        System.out.println(RESPONSE_CODE_LOG + responseCode);
+
+        in = new BufferedReader(
+            new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
+        System.out.println(RESPONSE_LOG_HEADER);
+        System.out.println(CODE_LOG_HEADER+con.getResponseCode());
+        System.out.println(HEADERS_LOG_HEADER);
+        logHeadersToConsole(con.getHeaderFields());
+
+        //print result
+        System.out.println(response.toString());
+    }
+
     private static void logHeadersToConsole(final Map<String, List<String>> map){
         for (Map.Entry<String, List<String>> entry : map.entrySet()) {
             System.out.println("Key : " + entry.getKey()
