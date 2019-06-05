@@ -47,13 +47,10 @@ public class HttpRequest {
         }
         in.close();
 
-        System.out.println(RESPONSE_LOG_HEADER);
+        System.out.println(RESPONSE_LOG_HEADER+response.toString());
         System.out.println(CODE_LOG_HEADER+con.getResponseCode());
         System.out.println(HEADERS_LOG_HEADER);
         logHeadersToConsole(con.getHeaderFields());
-
-        //print result
-        System.out.println(response.toString());
 
         if (response.toString().contains("ns3:link")) {
             latestHyperMediaLinks = retrivePostHyperMediaLinks(response.toString());
@@ -93,14 +90,11 @@ public class HttpRequest {
         }
         in.close();
 
-        System.out.println(RESPONSE_LOG_HEADER);
+        System.out.println(RESPONSE_LOG_HEADER + response.toString());
         System.out.println(CODE_LOG_HEADER+con.getResponseCode());
         System.out.println(HEADERS_LOG_HEADER);
 
         logHeadersToConsole(con.getHeaderFields());
-
-        //print result
-        System.out.println(response.toString());
 
         if (response.toString().contains("ns3:link")) {
             latestHyperMediaLinks = retrivePostHyperMediaLinks(response.toString());
@@ -140,14 +134,11 @@ public class HttpRequest {
         }
         in.close();
 
-        System.out.println(RESPONSE_LOG_HEADER);
+        System.out.println(RESPONSE_LOG_HEADER + response.toString());
         System.out.println(CODE_LOG_HEADER+con.getResponseCode());
         System.out.println(HEADERS_LOG_HEADER);
 
         logHeadersToConsole(con.getHeaderFields());
-
-        //print result
-        System.out.println(response.toString());
 
         if (response.toString().contains("link")) {
             latestHyperMediaLinks = retrivePutHyperMediaLinks(response.toString());
@@ -176,13 +167,10 @@ public class HttpRequest {
         }
         in.close();
 
-        System.out.println(RESPONSE_LOG_HEADER);
+        System.out.println(RESPONSE_LOG_HEADER + response.toString());
         System.out.println(CODE_LOG_HEADER+con.getResponseCode());
         System.out.println(HEADERS_LOG_HEADER);
         logHeadersToConsole(con.getHeaderFields());
-
-        //print result
-        System.out.println(response.toString());
     }
 
     private static void logHeadersToConsole(final Map<String, List<String>> map){
