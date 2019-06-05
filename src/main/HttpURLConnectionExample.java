@@ -43,7 +43,7 @@ public class HttpURLConnectionExample {
         //getRequestUrl = http.getLocationUrl(); //assume order is successful
         //http.sendGet(getRequestUrl);
 
-        System.out.println("\n\n\n>>>Testing 3 - Send Http PUT request - pay for order");
+        System.out.println("\n\n\n>>>Testing 2 - Send Http PUT request - pay for order");
         //search links for payment hypermedia link
         String putUrl = "";
         for (String hypermediaLink: hyperMediaLinks) {
@@ -63,6 +63,7 @@ public class HttpURLConnectionExample {
             throw new Exception("SHIT HAS HIT THE FAN!");
         }
 
+        System.out.println("\n\n\n>>>Testing 3 - Send Http GET request - waiting for order");
         //get until status = ready
         boolean ready = false;
         String getUrl = "";
@@ -92,6 +93,7 @@ public class HttpURLConnectionExample {
             }
         }
 
+        System.out.println("\n\n\n>>>Testing 4 - Send Http DELETE request - finishing order");
         //delete receipt once ready
         http.sendDelete(receiptUrl);
 
